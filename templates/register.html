@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #000; color: white; display: flex; align-items: center; justify-content: center; min-height: screen; }
+        .card { background: rgba(0, 20, 40, 0.8); padding: 40px; border-radius: 30px; border: 1px solid #1e3a8a; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="card w-full max-w-sm text-center">
+        <h2 class="text-xl font-black mb-6 text-blue-400 uppercase tracking-tighter">Access Portal</h2>
+        <div class="space-y-4">
+            <input id="nick" type="text" placeholder="Nickname" class="w-full p-4 rounded-2xl bg-white text-black text-center font-bold outline-none">
+            <div class="flex gap-2">
+                <div class="bg-blue-900/50 px-4 flex items-center rounded-2xl font-bold text-blue-400 border border-blue-500/20">+213</div>
+                <input id="phone" type="text" placeholder="5 / 6 / 7 XXXXXXXX" class="flex-grow p-4 rounded-2xl bg-white text-black text-center font-bold outline-none">
+            </div>
+            <button id="btn" onclick="start()" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-2xl font-bold text-lg active:scale-95 transition-all">REQUEST ACCESS</button>
+        </div>
+    </div>
+    <script>
+        async function start() {
+            const b = document.getElementById('btn');
+            b.innerText = "Processing..."; b.disabled = true;
+            
+            const n = document.getElementById('nick').value;
+            const p = document.getElementById('phone').value;
+            
+            try {
+                const res = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({nickname: n, phone: p})
+                });
+                const data = await res.json();
+                if(res.ok) window.location.href = data.url; 
+                else { alert(data.message); b.innerText = "REQUEST ACCESS"; b.disabled = false; }
+            } catch(e) { alert("Server Error! Check your internet."); b.innerText = "REQUEST ACCESS"; b.disabled = false; }
+        }
+    </script>
+</body>
+</html>
