@@ -1,76 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🅓🅩-🅒🅞🅝🅝🅔🅒🅣 | Welcome</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
+        /* تطبيق نفس خلفية صفحة القنوات (صورة الفأرة التكنولوجية) */
         body { 
-            background: #00050a; 
-            color: #fff; 
-            font-family: sans-serif;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: screen;
+            margin: 0; padding: 0;
+            background: url('https://z-cdn-media.chatglm.cn/files/df4cae94-bae5-4bf1-8d51-54a2fb4429b7.jpg?auth_key=1867320284-a137d941c33b45ccabec0925b6873bf1-0-677147ce5499656f976e32cfdda66079') no-repeat center center fixed;
+            background-size: cover;
+            color: white; 
+            font-family: 'Cairo', sans-serif;
+            min-height: 100vh;
         }
 
-        /* تنسيق الشعار بالأزرق والأبيض */
+        /* طبقة التعتيم الموحدة */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 10, 20, 0.4); /* لون أزرق داكن جداً */
+            z-index: -1;
+        }
+        
+        /* الشعار المتحرك (نفسه في الصفحة السابقة) */
         .brand-logo {
-            font-size: clamp(2rem, 10vw, 4.5rem);
             font-weight: 900;
-            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(160deg) brightness(118%) contrast(119%);
-            text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
-            letter-spacing: -1px;
+            background: linear-gradient(90deg, #00f2ff, #3b82f6, #ffd700);
+            background-size: 300% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradientMove 4s linear infinite;
+            text-shadow: 0px 0px 20px rgba(0, 242, 255, 0.4);
         }
 
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* البطاقة الزجاجية (Glassmorphism) */
         .glass-card {
-            background: rgba(0, 20, 40, 0.5);
-            border: 1px solid rgba(0, 212, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 5, 10, 0.7);
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.1);
+            transition: 0.3s;
+        }
+        
+        .glass-card:hover {
+            border-color: #ffd700;
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
         }
 
+        /* زر الدخول */
         .btn-enter {
-            background: #0066ff;
-            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            background: linear-gradient(45deg, #00f2ff, #0066ff);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.4);
             transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .btn-enter:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.5);
+            box-shadow: 0 0 40px rgba(0, 242, 255, 0.6);
+            background: linear-gradient(45deg, #0066ff, #003399);
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen flex items-center justify-center">
 
-    <div class="text-center space-y-8 p-6">
+    <div class="text-center space-y-8 p-6 w-full max-w-2xl mx-auto">
         
-        <div class="mb-4">
-            <img src="https://flagcdn.com/w80/dz.png" class="inline-block rounded shadow-lg">
+        <!-- علم الجزائر -->
+        <div class="mb-6 animate-bounce">
+            <img src="https://flagcdn.com/w80/dz.png" alt="DZ Flag" class="inline-block rounded-full shadow-[0_0_15px_rgba(255,255,255,0.5)]">
         </div>
 
-        <h1 class="brand-logo">🅓🅩-🅒🅞🅝🅝🅔🅒🅣</h1>
+        <!-- الشعار المتحرك -->
+        <h1 class="brand-logo text-5xl md:text-7xl tracking-tighter">
+            🅓🅩-🅒🅞🅝🅝🅔🅒🅣
+        </h1>
         
-        <div class="glass-card p-10 md:p-14 rounded-[3rem] space-y-6 max-w-lg mx-auto">
-            <p class="text-blue-400 font-bold tracking-widest text-xs uppercase">
-                Algerian Hub
-            </p>
-            
-            <h2 class="text-2xl md:text-3xl font-bold text-white">
-                Welcome to DZ-CONNECT Forum
-            </h2>
+        <!-- بطاقة الترحيب -->
+        <div class="glass-card p-12 md:p-16 rounded-[3rem] space-y-8">
+            <div class="space-y-2">
+                <p class="text-cyan-400 font-black tracking-[0.2em] text-xs uppercase opacity-80">
+                    Algerian Hub
+                </p>
+                
+                <h2 class="text-3xl md:text-4xl font-bold text-white leading-tight">
+                    Welcome to <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-500">DZ-CONNECT Forum</span>
+                </h2>
+            </div>
 
-            <div class="pt-4">
-                <a href="/join" class="btn-enter inline-block px-16 py-5 rounded-2xl font-black text-xl uppercase tracking-tighter">
+            <div class="pt-6">
+                <!-- يمكنك تغيير الرابط /join إلى رابط صفحة القنوات -->
+                <a href="/join" class="btn-enter inline-block px-20 py-5 rounded-2xl font-black text-2xl uppercase tracking-widest text-white">
                     ENTER 🚀
                 </a>
             </div>
         </div>
 
-        <p class="text-[10px] text-slate-600 font-bold tracking-[0.3em] uppercase">
+        <p class="text-[10px] text-slate-500 font-black tracking-[0.5em] uppercase mt-12">
             Developed by MisterAI ● 2025
         </p>
     </div>
