@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#00050a] text-white flex items-center justify-center min-h-screen">
+    <div class="text-center p-10 bg-blue-900/10 rounded-[2.5rem] border border-blue-500/20">
+        <h3 class="text-blue-400 font-bold mb-4 uppercase tracking-widest text-xs">Verify Identity</h3>
+        <input id="code" type="text" maxlength="4" placeholder="0000" class="bg-white text-black text-center text-3xl font-black p-4 rounded-2xl w-48 mb-6 outline-none">
+        <button onclick="check()" class="w-full bg-blue-600 py-4 rounded-2xl font-bold hover:bg-blue-500">VERIFY</button>
+    </div>
+    <script>
+        async function check() {
+            const c = document.getElementById('code').value;
+            const res = await fetch('/api/verify_code', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({code: c})
+            });
+            const data = await res.json();
+            if(res.ok) window.location.href = data.url; else alert(data.message);
+        }
+    </script>
+</body>
+</html>
